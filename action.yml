@@ -17,5 +17,5 @@ runs:
   using: "composite"
   steps:
     - id: versiongenerator
-      run: ./version_generator.sh -build_number ${{ inputs.build_number }} -launch_date ${{ inputs.launch_date }}
+      run: ./version_generator.sh ${{ inputs.build_number }} ${{ inputs.launch_date }}
       shell: shell
