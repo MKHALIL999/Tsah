@@ -1,0 +1,21 @@
+name: 'Computing version for branch'
+description: 'Computes versions based on branches and build numbers'
+inputs:
+  build_number: 
+    description:  'The build number unique to each pipeline'
+    required: true
+    default: null
+   launch_date: 
+    description:  'The date on which the pipeline has been launched'
+    required: true
+    default: null
+outputs:
+  version_name:
+    description: "The version's name based on the delivered inputs"
+    value: "${{ steps.versiongenerator.outputs.version_name }}"
+runs:
+  using: "composite"
+  steps:
+    - id: versiongenerator
+      run: ./version_generator.sh -build_number ${{ inputs.build_number }} -launch_date ${{ inputs.launch_date }}
+      shell: shell
